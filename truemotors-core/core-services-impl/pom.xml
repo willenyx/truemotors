@@ -12,4 +12,23 @@
     <artifactId>core-services-impl</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.willenyx</groupId>
+            <artifactId>core-services</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.willenyx</groupId>
+            <artifactId>core-db-repositories</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
