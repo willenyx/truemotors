@@ -11,5 +11,16 @@
 
     <artifactId>core-services</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.willenyx</groupId>
+            <artifactId>core-db-entities</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
