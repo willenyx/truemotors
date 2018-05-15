@@ -13,10 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -47,5 +44,15 @@ public class UserEndpoint {
         User createdUser = userService.create(request);
         logger.info("Done creating user with id : {}", createdUser.getId());
         return mapper.map(createdUser, UserResponseDto.class);
+    }
+
+    @GET
+    @Path("/{userId}")
+    public UserResponseDto get(@NotNull @PathParam("userId") final Long userId) {
+        Assert.notNull(userId, "userId cannot be null...");
+        logger.debug("Getting user with id : {}", userId);
+        User user = userService.get(userId);
+        logger.info("Done getting user with id : {}", user.getId());
+        return mapper.map(user, UserResponseDto.class);
     }
 }
