@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User get(final long id) {
-        return null;
+    public User get(final long userId) {
+        return userRepository.findByIdAndDeletedIsNull(userId);
     }
 
     //Todo: Investigate user create and update flow.

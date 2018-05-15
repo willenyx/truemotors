@@ -1,6 +1,7 @@
 package com.willenyx.truemotors.api.config;
 
 import com.willenyx.truemotors.api.endpoints.ApplicationStatusCheckEndpoint;
+import com.willenyx.truemotors.api.endpoints.UserEndpoint;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -14,5 +15,6 @@ public class TrueMotorsJerseyConfig extends ResourceConfig {
     public TrueMotorsJerseyConfig() {
         //register endpoints here
         register(ApplicationStatusCheckEndpoint.class);
+        register(UserEndpoint.class);
     }
 }

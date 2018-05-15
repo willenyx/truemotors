@@ -13,7 +13,7 @@ public interface UserService {
 
     User create(@NotNull UserCreateUpdateRequest createRequest);
 
-    User get(long id);
+    User get(long userId);
 
     User update(@NotNull UserCreateUpdateRequest updateRequest);
 
