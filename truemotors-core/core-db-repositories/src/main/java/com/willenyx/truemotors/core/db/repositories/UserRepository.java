@@ -9,4 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * Time: 5:17 PM
  */
 public interface UserRepository extends CrudRepository<User, Long> {
+
+    User findByIdAndDeletedIsNull(Long userId);
 }
