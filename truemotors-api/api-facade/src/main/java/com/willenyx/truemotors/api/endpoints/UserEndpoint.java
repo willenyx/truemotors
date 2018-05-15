@@ -1,6 +1,7 @@
 package com.willenyx.truemotors.api.endpoints;
 
 import com.willenyx.truemotors.api.common.user.UserCreateUpdateRequestDto;
+import com.willenyx.truemotors.api.common.user.UserResponseDto;
 import com.willenyx.truemotors.api.config.BeanMapper;
 import com.willenyx.truemotors.core.db.entities.User;
 import com.willenyx.truemotors.core.services.user.UserCreateUpdateRequest;
@@ -17,7 +18,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * Author: William Arustamyan
@@ -40,12 +40,12 @@ public class UserEndpoint {
     private UserService userService;
 
     @PUT
-    public Response.Status create(@NotNull final UserCreateUpdateRequestDto createUpdateRequest) {
+    public UserResponseDto create(@NotNull final UserCreateUpdateRequestDto createUpdateRequest) {
         Assert.notNull(createUpdateRequest, "createUpdateRequest cannot be null...");
-        logger.debug("Start creating user...");
+        logger.info("Start creating user...");
         UserCreateUpdateRequest request = mapper.map(createUpdateRequest, UserCreateUpdateRequest.class);
         User createdUser = userService.create(request);
-        System.out.println("Created user : " + createdUser);
-        return Response.Status.OK;
+        logger.info("Done creating user with id : {}", createdUser.getId());
+        return mapper.map(createdUser, UserResponseDto.class);
     }
 }
