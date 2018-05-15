@@ -1,7 +1,7 @@
 create sequence seq_user start 1 increment 50;
 
 
-create table user (
+create table truemotors_user (
   id           bigint       not null constraint pk_user primary key,
   first_name   varchar(100) not null,
   last_name    varchar(100) not null,
@@ -11,4 +11,4 @@ create table user (
   created      timestamp    not null,
   updated      timestamp    not null,
   deleted      timestamp
-);
+)
