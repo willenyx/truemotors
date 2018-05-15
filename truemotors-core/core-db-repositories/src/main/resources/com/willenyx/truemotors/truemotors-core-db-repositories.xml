@@ -70,9 +70,9 @@
                     <entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>
                     <entry key="hibernate.globally_quoted_identifiers" value="true"/>
                     <entry key="hibernate.cache.use_query_cache" value="true"/>
-                    <entry key="hibernate.cache.region.factory_class"
-                           value="org.hibernate.cache.jcache.JCacheRegionFactory"/>
-                    <entry key="hibernate.javax.cache.provider" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
+                    <!--<entry key="hibernate.cache.region.factory_class"
+                           value="org.hibernate.cache.jcache.JCacheRegionFactory"/>-->
+                    <!--<entry key="hibernate.javax.cache.provider" value="org.ehcache.jsr107.EhcacheCachingProvider"/>-->
                     <!--<entry key="hibernate.javax.cache.uri" value-ref="ehCacheUri"/>-->
                     <entry key="hibernate.jdbc.lob.non_contextual_creation" value="true"/>
                 </map>
