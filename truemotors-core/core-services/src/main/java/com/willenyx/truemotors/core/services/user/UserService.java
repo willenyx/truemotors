@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
  */
 public interface UserService {
 
-    User create(@NotNull UserCreateUpdateRequest createRequest);
+    User create(@NotNull UserCreationRequest request);
 
     User get(long userId);
 
-    User update(@NotNull UserCreateUpdateRequest updateRequest);
+    User update(long userId, @NotNull UserModificationRequest updateRequest);
 
     void delete(long id);
 }
