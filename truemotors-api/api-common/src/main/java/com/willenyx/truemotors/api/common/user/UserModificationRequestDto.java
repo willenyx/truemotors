@@ -5,19 +5,11 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Author: William Arustamyan
- * Date: 14/05/2018
- * Time: 6:02 PM
+ * Date: 18/05/2018
+ * Time: 9:20 AM
  */
-public class UserCreateUpdateRequestDto {
-
-    @NotNull
-    @NotBlank
-    private String firstName;
-
-    @NotNull
-    @NotBlank
-    private String lastName;
-
+public class UserModificationRequestDto {
+    
     @NotNull
     @NotBlank
     private String password;
@@ -29,22 +21,6 @@ public class UserCreateUpdateRequestDto {
     @NotNull
     @NotBlank
     private String email;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getPassword() {
         return password;

@@ -2,10 +2,10 @@ package com.willenyx.truemotors.core.services.user;
 
 /**
  * Author: William Arustamyan
- * Date: 14/05/2018
- * Time: 5:28 PM
+ * Date: 18/05/2018
+ * Time: 9:22 AM
  */
-public class UserCreateUpdateRequest {
+public class UserCreationRequest {
 
     private String firstName;
 

@@ -1,7 +1,9 @@
 package com.willenyx.truemotors.api.config;
 
-import com.willenyx.truemotors.api.common.user.UserCreateUpdateRequestDto;
-import com.willenyx.truemotors.core.services.user.UserCreateUpdateRequest;
+import com.willenyx.truemotors.api.common.user.UserCreationRequestDto;
+import com.willenyx.truemotors.api.common.user.UserModificationRequestDto;
+import com.willenyx.truemotors.core.services.user.UserCreationRequest;
+import com.willenyx.truemotors.core.services.user.UserModificationRequest;
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Mapper;
 import ma.glasnost.orika.MapperFactory;
@@ -55,7 +57,8 @@ public class BeanMapper extends ConfigurableMapper {
     protected void configure(MapperFactory factory) {
         this.factory = factory;
 
-        factory.classMap(UserCreateUpdateRequest.class, UserCreateUpdateRequestDto.class).byDefault().register();
+        factory.classMap(UserCreationRequest.class, UserCreationRequestDto.class).byDefault().register();
+        factory.classMap(UserModificationRequest.class, UserModificationRequestDto.class).byDefault().register();
 
         addAllSpringBeans();
     }
