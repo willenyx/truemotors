@@ -6,4 +6,6 @@ package com.willenyx.truemotors.api.common.vehicle;
  * Time: 12:15 PM
  */
 public enum Country {
+
+    ARM
 }

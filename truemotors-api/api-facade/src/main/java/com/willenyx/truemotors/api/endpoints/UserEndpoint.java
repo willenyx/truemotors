@@ -1,13 +1,13 @@
 package com.willenyx.truemotors.api.endpoints;
 
-import com.willenyx.truemotors.api.common.user.UserCreationRequestDto;
-import com.willenyx.truemotors.api.common.user.UserModificationRequestDto;
+import com.willenyx.truemotors.api.common.ServiceType;
 import com.willenyx.truemotors.api.common.user.UserResponseDto;
 import com.willenyx.truemotors.api.config.BeanMapper;
 import com.willenyx.truemotors.core.db.entities.User;
+import com.willenyx.truemotors.core.services.ServiceRegistry;
 import com.willenyx.truemotors.core.services.user.UserCreationRequest;
+import com.willenyx.truemotors.core.services.user.UserCrudService;
 import com.willenyx.truemotors.core.services.user.UserModificationRequest;
-import com.willenyx.truemotors.core.services.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +37,13 @@ public class UserEndpoint {
     private BeanMapper mapper;
 
     @Autowired
-    private UserService userService;
+    private ServiceRegistry<UserCrudService> serviceRegistry;
 
     @PUT
-    public UserResponseDto create(@NotNull final UserCreationRequestDto creationRequestDto) {
-        Assert.notNull(creationRequestDto, "creationRequestDto cannot be null...");
+    public UserResponseDto create(@NotNull final UserCreationRequest creationRequest) {
+        Assert.notNull(creationRequest, "creationRequest cannot be null...");
         logger.info("Start creating user...");
-        UserCreationRequest request = mapper.map(creationRequestDto, UserCreationRequest.class);
-        User createdUser = userService.create(request);
+        User createdUser = serviceRegistry.getService(ServiceType.USER).create(creationRequest);
         logger.info("Done creating user with id : {}", createdUser.getId());
         return mapper.map(createdUser, UserResponseDto.class);
     }
@@ -54,18 +53,16 @@ public class UserEndpoint {
     public UserResponseDto get(@NotNull @PathParam("userId") final Long userId) {
         Assert.notNull(userId, "userId cannot be null...");
         logger.debug("Getting user with id : {}", userId);
-        User user = userService.get(userId);
+        User user = serviceRegistry.getService(ServiceType.USER).get(userId);
         logger.info("Done getting user with id : {}", user.getId());
         return mapper.map(user, UserResponseDto.class);
     }
 
     @PUT
     @Path("/{userId}")
-    public UserResponseDto update(@NotNull @PathParam("userId") final Long userId,
-                                  @NotNull @Valid final UserModificationRequestDto modificationRequestDto) {
-        Assert.notNull(modificationRequestDto, "modificationRequestDto cannot be null...");
-        UserModificationRequest request = mapper.map(modificationRequestDto, UserModificationRequest.class);
-        User user = userService.update(userId, request);
+    public UserResponseDto update(@NotNull @PathParam("userId") final Long userId, @NotNull @Valid final UserModificationRequest modificationRequest) {
+        Assert.notNull(modificationRequest, "modificationRequest cannot be null...");
+        User user = serviceRegistry.getService(ServiceType.USER).update(userId, modificationRequest);
         return mapper.map(user, UserResponseDto.class);
     }
 
@@ -75,7 +72,7 @@ public class UserEndpoint {
     public void delete(@NotNull @PathParam("userId") final Long userId) {
         Assert.notNull(userId, "userId cannot be empty");
         logger.debug("Deleting user:{}...", userId);
-        userService.delete(userId);
+        serviceRegistry.getService(ServiceType.USER).delete(userId);
         logger.info("Deleted user:{}.", userId);
     }
 }

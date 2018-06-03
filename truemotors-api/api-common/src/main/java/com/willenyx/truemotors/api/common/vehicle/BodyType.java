@@ -6,4 +6,11 @@ package com.willenyx.truemotors.api.common.vehicle;
  * Time: 11:45 AM
  */
 public enum BodyType {
+    HATCHBACK,
+    SEDAN,
+    MPV,
+    SUV,
+    CROSSOVER,
+    COUPE,
+    CONVERTIBLE
 }
