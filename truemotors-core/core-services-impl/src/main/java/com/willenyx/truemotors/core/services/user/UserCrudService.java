@@ -1,11 +1,9 @@
-package com.willenyx.truemotors.core.services.user.impl;
+package com.willenyx.truemotors.core.services.user;
 
+import com.willenyx.truemotors.api.common.ServiceType;
 import com.willenyx.truemotors.core.db.entities.User;
 import com.willenyx.truemotors.core.db.repositories.UserRepository;
-import com.willenyx.truemotors.core.services.user.ResourceNotFoundException;
-import com.willenyx.truemotors.core.services.user.UserCreationRequest;
-import com.willenyx.truemotors.core.services.user.UserModificationRequest;
-import com.willenyx.truemotors.core.services.user.UserService;
+import com.willenyx.truemotors.core.services.CrudService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,9 @@ import java.time.LocalDateTime;
  * Time: 5:35 PM
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserCrudService implements CrudService<User, UserCreationRequest, UserModificationRequest> {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserCrudService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -94,8 +92,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public ServiceType getServiceType() {
+        return ServiceType.USER;
+    }
+
     private void validateCreationRequest(final UserCreationRequest request) {
-        Assert.notNull(request, "User create or update request cannot be null ...");
+        Assert.notNull(request, "User creation request cannot be null ...");
         Assert.notNull(request.getFirstName(), "User create or update request first name cannot be null ...");
         Assert.notNull(request.getLastName(), "User create or update request last name cannot be null ...");
         Assert.notNull(request.getEmail(), "User create or update request email address cannot be null ...");
